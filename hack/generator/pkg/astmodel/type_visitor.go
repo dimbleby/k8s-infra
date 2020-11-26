@@ -267,24 +267,6 @@ func IdentityVisitOfAllOfType(this *TypeVisitor, it AllOfType, ctx interface{}) 
 	return MakeAllOfType(newTypes...), nil
 }
 
-func IdentityVisitOfStorageType(this *TypeVisitor, st *StorageType, ctx interface{}) (Type, error) {
-	nt, err := this.Visit(&st.objectType, ctx)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to visit storage type %T", st.objectType)
-	}
-
-	switch newType := nt.(type) {
-	case *ObjectType:
-		return NewStorageType(*newType), nil
-
-	case *StorageType:
-		return newType, nil
-
-	default:
-		return nil, errors.Errorf("expected transformation of Storage type %T to return ObjectType, not %T", st.objectType, newType)
-	}
-}
-
 func IdentityVisitOfFlaggedType(this *TypeVisitor, ft *FlaggedType, ctx interface{}) (Type, error) {
 	nt, err := this.Visit(ft.element, ctx)
 	if err != nil {
