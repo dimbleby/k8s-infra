@@ -122,7 +122,6 @@ func MakeTypeVisitor() TypeVisitor {
 		VisitResourceType: IdentityVisitOfResourceType,
 		VisitOneOfType:    IdentityVisitOfOneOfType,
 		VisitAllOfType:    IdentityVisitOfAllOfType,
-		VisitStorageType:  IdentityVisitOfStorageType,
 		VisitFlaggedType:  IdentityVisitOfFlaggedType,
 	}
 }
