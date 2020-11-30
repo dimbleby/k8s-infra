@@ -1,0 +1,7 @@
+apiVersion: microsoft.containerservice.infra.azure.com/v20191101
+kind: ManagedCluster
+metadata:
+  name: managedcluster-sample
+spec:
+  properties:
+    dnsPrefix: test-k8s

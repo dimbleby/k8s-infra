@@ -1,0 +1,7 @@
+apiVersion: microsoft.containerservice.infra.azure.com/v1
+kind: ManagedCluster
+metadata:
+  name: managedcluster-sample
+spec:
+  # Add fields here
+  foo: bar

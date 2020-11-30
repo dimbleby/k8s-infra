@@ -6,20 +6,19 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.4.0
   creationTimestamp: null
-  name: routetables.microsoft.network.infra.azure.com
+  name: managedclusters.microsoft.containerservice.infra.azure.com
 spec:
-  group: microsoft.network.infra.azure.com
+  group: microsoft.containerservice.infra.azure.com
   names:
-    kind: RouteTable
-    listKind: RouteTableList
-    plural: routetables
-    singular: routetable
+    kind: ManagedCluster
+    listKind: ManagedClusterList
+    plural: managedclusters
+    singular: managedcluster
   scope: Namespaced
   versions:
   - name: v1
     schema:
       openAPIV3Schema:
-        description: RouteTable is the Schema for the routetables API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -34,39 +33,46 @@ spec:
           metadata:
             type: object
           spec:
-            description: RouteTableSpec defines the desired state of RouteTable
             properties:
               apiVersion:
                 type: string
               location:
-                description: Location of the VNET in Azure
                 type: string
               properties:
-                description: Properties of the Virtual Network
                 properties:
-                  disableBgpRoutePropagation:
-                    type: boolean
-                  routeRefs:
+                  agentPoolProfiles:
                     items:
-                      description: KnownTypeReference is a reference to an object
-                        which the type and version is already known
                       properties:
+                        count:
+                          format: int32
+                          type: integer
+                        macPods:
+                          format: int32
+                          type: integer
                         name:
-                          description: Name is the name of resource being referenced
                           type: string
-                        namespace:
-                          description: Namespace is the namespace of resource being
-                            referenced.
+                        osDiskSizeGB:
+                          format: int32
+                          type: integer
+                        vmSize:
                           type: string
-                      required:
-                      - name
-                      - namespace
                       type: object
                     type: array
+                  dnsPrefix:
+                    type: string
+                  kubernetesVersion:
+                    type: string
+                  servicePrincipalProfile:
+                    properties:
+                      clientId:
+                        type: string
+                      secret:
+                        type: string
+                    type: object
                 type: object
               resourceGroupRef:
-                description: ResourceGroupRef is the Azure Resource Group the VirtualNetwork
-                  resides within
+                description: KnownTypeReference is a reference to an object which
+                  the type and version is already known
                 properties:
                   name:
                     description: Name is the name of resource being referenced
@@ -78,18 +84,11 @@ spec:
                 - name
                 - namespace
                 type: object
-              tags:
-                additionalProperties:
-                  type: string
-                description: Tags are user defined key value pairs
-                type: object
             required:
             - apiVersion
-            - location
             - resourceGroupRef
             type: object
           status:
-            description: RouteTableStatus defines the observed state of RouteTable
             properties:
               deploymentId:
                 type: string
@@ -106,7 +105,7 @@ spec:
   - name: v20191101
     schema:
       openAPIV3Schema:
-        description: RouteTable is the Schema for the routetables API
+        description: ManagedCluster is the Schema for the managedclusters API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -121,37 +120,44 @@ spec:
           metadata:
             type: object
           spec:
-            description: RouteTableSpec defines the desired state of RouteTable
             properties:
               location:
-                description: Location of the VNET in Azure
                 type: string
               properties:
-                description: Properties of the Virtual Network
                 properties:
-                  disableBgpRoutePropagation:
-                    type: boolean
-                  routeRefs:
+                  agentPoolProfiles:
                     items:
-                      description: KnownTypeReference is a reference to an object
-                        which the type and version is already known
                       properties:
+                        count:
+                          format: int32
+                          type: integer
+                        macPods:
+                          format: int32
+                          type: integer
                         name:
-                          description: Name is the name of resource being referenced
                           type: string
-                        namespace:
-                          description: Namespace is the namespace of resource being
-                            referenced.
+                        osDiskSizeGB:
+                          format: int32
+                          type: integer
+                        vmSize:
                           type: string
-                      required:
-                      - name
-                      - namespace
                       type: object
                     type: array
+                  dnsPrefix:
+                    type: string
+                  kubernetesVersion:
+                    type: string
+                  servicePrincipalProfile:
+                    properties:
+                      clientId:
+                        type: string
+                      secret:
+                        type: string
+                    type: object
                 type: object
               resourceGroupRef:
-                description: ResourceGroupRef is the Azure Resource Group the VirtualNetwork
-                  resides within
+                description: KnownTypeReference is a reference to an object which
+                  the type and version is already known
                 properties:
                   name:
                     description: Name is the name of resource being referenced
@@ -163,17 +169,11 @@ spec:
                 - name
                 - namespace
                 type: object
-              tags:
-                additionalProperties:
-                  type: string
-                description: Tags are user defined key value pairs
-                type: object
             required:
             - location
             - resourceGroupRef
             type: object
           status:
-            description: RouteTableStatus defines the observed state of RouteTable
             properties:
               id:
                 type: string

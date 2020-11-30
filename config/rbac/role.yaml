@@ -39,6 +39,26 @@ rules:
   - patch
   - update
 - apiGroups:
+  - microsoft.containerservice.infra.azure.com
+  resources:
+  - managedclusters
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - microsoft.containerservice.infra.azure.com
+  resources:
+  - managedclusters/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
   - microsoft.network.infra.azure.com
   resources:
   - backendaddresspools

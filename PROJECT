@@ -107,4 +107,10 @@ resources:
 - group: microsoft.network
   kind: NetworkInterface
   version: v20191101
+- group: microsoft.containerservice
+  kind: ManagedCluster
+  version: v1
+- group: microsoft.containerservice
+  kind: ManagedCluster
+  version: v20191101
 version: "2"

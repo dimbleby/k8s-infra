@@ -27,6 +27,7 @@ import (
 	"github.com/Azure/k8s-infra/apis"
 	azcorev1 "github.com/Azure/k8s-infra/apis/core/v1"
 	microsoftcomputev1 "github.com/Azure/k8s-infra/apis/microsoft.compute/v1"
+	microsoftcontainerservicev1 "github.com/Azure/k8s-infra/apis/microsoft.containerservice/v1"
 	microsoftnetworkv1 "github.com/Azure/k8s-infra/apis/microsoft.network/v1"
 	microsoftresourcesv1 "github.com/Azure/k8s-infra/apis/microsoft.resources/v1"
 	"github.com/Azure/k8s-infra/pkg/util/patch"
@@ -66,6 +67,7 @@ var (
 		new(microsoftnetworkv1.NetworkInterface),
 		new(microsoftcomputev1.VirtualMachine),
 		new(microsoftcomputev1.VirtualMachineScaleSet),
+		new(microsoftcontainerservicev1.ManagedCluster),
 	}
 )
 
@@ -76,6 +78,8 @@ var (
 // +kubebuilder:rbac:groups=microsoft.network.infra.azure.com,resources=backendaddresspools/status;frontendipconfigurations/status;inboundnatrules/status;loadbalancers/status;loadbalancingrules/status;networkinterfaces/status;networksecuritygroups/status;outboundrules/status;routes/status;routetables/status;securityrules/status;subnets/status;virtualnetworks/status,verbs=get;update;patch
 // +kubebuilder:rbac:groups=microsoft.compute.infra.azure.com,resources=virtualmachines;virtualmachinescalesets,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups=microsoft.compute.infra.azure.com,resources=virtualmachines/status;virtualmachinescalesets/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=microsoft.containerservice.infra.azure.com,resources=managedclusters,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=microsoft.containerservice.infra.azure.com,resources=managedclusters/status,verbs=get;update;patch
 
 type (
 	// GenericReconciler reconciles a Resourcer object
